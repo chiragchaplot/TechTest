@@ -8,5 +8,19 @@
 import Foundation
 
 class ProductViewModel {
+    let product : Product
     
+    init (product: Product)
+    {
+        self.product = product
+        print("ProductViewModel",product.name)
+    }
+    
+    var name : String {
+        return product.name
+    }
+    
+    var productID: String {
+        return product.productID
+    }
 }

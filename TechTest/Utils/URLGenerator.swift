@@ -8,18 +8,20 @@
 import Foundation
 
 struct URLGenerator {
-        struct Urls {
-//            static func urlForWeatherByCity(city: String) -> URL {
-//                let userDefaults = UserDefaults.standard
-//                let unit  = (userDefaults.value(forKey: "unit") as? String) ?? "imperial"
-//
-//                let url = "https://api.openweathermap.org/data/2.5/weather?q=\(city.escaped())&APPID=9a3874191d1fd428cd7781397bf6d8d2&units=\(unit)"
-//                return URL(string: url)!
-//            }
-            
-            static func baseURL() -> URL {
-                let url = "https://api.commbank.com.au/public/cds-au/v1/banking/products?page-size=1000"
-                return URL(string: url)!
-            }
-        }
+    private func baseURL() -> String {
+        return "https://api.commbank.com.au/public/cds-au/v1/banking/products"
+    }
+    
+    func productList() -> URL {
+        var url = baseURL()
+        let pageCount = "?page_count=1000"
+        url = url + pageCount
+        return URL(string: url)!
+    }
+    
+    func productDetail(productID: String) -> URL {
+        var url = baseURL()
+        url = url + "/" + productID
+        return URL(string: url)!
+    }
 }

@@ -9,7 +9,7 @@ import Foundation
 // MARK: - ProductResponse
 struct ProductResponse: Codable {
     let data: DataClass
-//    let links: Links
+    let links: Links
     let meta: Meta
 }
 
