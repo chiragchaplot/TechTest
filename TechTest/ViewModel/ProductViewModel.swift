@@ -13,7 +13,6 @@ class ProductViewModel {
     init (product: Product)
     {
         self.product = product
-        print("ProductViewModel",product.name)
     }
     
     var name : String {

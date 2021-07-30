@@ -25,8 +25,6 @@ class ProductListViewModel {
                 let productVM = ProductViewModel(product: product)
                 productViewModels.append(productVM)
             }
-            print("productList",productList.data.products.count)
-            print("productViewModels",productViewModels.count)
         }
     }
 }

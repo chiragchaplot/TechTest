@@ -8,9 +8,15 @@
 import Foundation
 import UIKit
 
+protocol ProductDetailDelegate {
+    func showProductDetails(productID: String)
+}
+
 class ProductListTableViewController: UITableViewController {
     
     var productListVM:ProductListViewModel
+    
+    var delegate: ProductDetailDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,11 +27,9 @@ class ProductListTableViewController: UITableViewController {
     
     func load()
     {
-        let productListLoader = ProductListLoader()
-        let productResource = Resource<ProductResponse>(urlRequest: productListLoader.getURLRequest()) { data in
-            let productResponse = try? JSONDecoder().decode(ProductResponse.self, from: data)
-                return productResponse
-        }
+        let productListLoader = ProductListLoaderURL()
+        let productResource = productListLoader.getProductList()
+        
         Webservice().load(resource: productResource) { [weak self] (result) in
             if let productResource = result {
                 self?.productListVM = ProductListViewModel(productList: productResource)
@@ -34,11 +38,13 @@ class ProductListTableViewController: UITableViewController {
         }
     }
     
-    
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+    required init?(coder aDecoder: NSCoder) {
+        self.productListVM = ProductListViewModel(productList: nil)
+        super.init(coder: aDecoder)
     }
+}
 
+extension ProductListTableViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -51,12 +57,17 @@ class ProductListTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProductCell", for: indexPath) as! ProductTableListCell
         let productVM = productListVM.modelAt(indexPath.row)
         cell.configure(productVM)
-        print(productVM.productID)
         return cell
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        self.productListVM = ProductListViewModel(productList: nil)
-        super.init(coder: aDecoder)
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? ProductDetailViewController{
+            guard let index = tableView.indexPathForSelectedRow?.row else { return }
+            destination.productID = productListVM.modelAt(index).productID
+        }
     }
 }
