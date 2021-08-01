@@ -40,7 +40,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="productName" destination="bR0-N1-5Dc" id="BFA-48-Wwr"/>
-                                    <segue destination="GcD-Jh-lqQ" kind="presentation" id="jbf-rA-rWL"/>
+                                    <segue destination="GcD-Jh-lqQ" kind="presentation" id="x6C-q7-xb9"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -62,20 +62,29 @@
                     <view key="view" contentMode="scaleToFill" id="FGE-iz-Q7m">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eFg-eM-TVU">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="Title" id="WIm-mU-UVY">
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="rg0-SH-uKy">
+                                            <connections>
+                                                <action selector="backButtonPressed:" destination="GcD-Jh-lqQ" id="KWu-6g-Gr0"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="Dk7-Cd-FLo"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="cng-aq-Lkj">
-                        <barButtonItem key="leftBarButtonItem" title="Back" id="nAc-XK-XHV">
-                            <connections>
-                                <action selector="backButtonPressed" destination="GcD-Jh-lqQ" id="lXL-NX-g6o"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="bc7-2b-Avg"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Trt-HF-f9I" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2066.666666666667" y="-236.38392857142856"/>
+            <point key="canvasLocation" x="1419" y="-236"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="c7W-B0-eeD">

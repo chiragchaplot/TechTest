@@ -17,15 +17,16 @@ struct ProductDetailResponse: Codable {
 // MARK: - DataClass
 struct ProductDetailDataClass: Codable {
     let features: [Feature]
-    let eligibility: [Eligibility]
+    let eligibility: [Eligibility]?
     let productID: String
     let lastUpdated, productCategory, name, dataDescription: String
     let brand, brandName: String
     let isTailored: Bool
+    let fees: [Fee]?
     
 
     enum CodingKeys: String, CodingKey {
-        case features, eligibility
+        case features, eligibility, fees
         case productID = "productId"
         case lastUpdated, productCategory, name
         case dataDescription = "description"
@@ -73,7 +74,7 @@ struct Feature: Codable {
 
 // MARK: - Fee
 struct Fee: Codable {
-    let name, feeType, amount: String
+    let name, feeType, amount: String?
 }
 
 // MARK: - Links

@@ -27,6 +27,7 @@
 		050C773826B0CFF500C49681 /* ProductDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050C773726B0CFF500C49681 /* ProductDetailViewModel.swift */; };
 		050C773C26B0E70B00C49681 /* NetworkResponseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050C773B26B0E70B00C49681 /* NetworkResponseError.swift */; };
 		050C774526B11C9C00C49681 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050C774426B11C9C00C49681 /* Common.swift */; };
+		05B5CC1926B3BB5100F17CCA /* CollectionViewDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B5CC1826B3BB5100F17CCA /* CollectionViewDataModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		050C773726B0CFF500C49681 /* ProductDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailViewModel.swift; sourceTree = "<group>"; };
 		050C773B26B0E70B00C49681 /* NetworkResponseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResponseError.swift; sourceTree = "<group>"; };
 		050C774426B11C9C00C49681 /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
+		05B5CC1826B3BB5100F17CCA /* CollectionViewDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewDataModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +86,7 @@
 		050C76E926ACFA4800C49681 /* TechTest */ = {
 			isa = PBXGroup;
 			children = (
+				0572551426B6D4AF00EABB00 /* Resources */,
 				050C773E26B10FC900C49681 /* Common */,
 				050C772426AE3E1600C49681 /* Custom Cell */,
 				050C770426ACFA9200C49681 /* Services */,
@@ -92,12 +95,6 @@
 				050C770126ACFA7500C49681 /* Model */,
 				050C770026ACFA6800C49681 /* ViewModel */,
 				050C76FF26ACFA5900C49681 /* Controller */,
-				050C76EA26ACFA4800C49681 /* AppDelegate.swift */,
-				050C76EC26ACFA4800C49681 /* SceneDelegate.swift */,
-				050C76F026ACFA4800C49681 /* Main.storyboard */,
-				050C76F326ACFA4A00C49681 /* Assets.xcassets */,
-				050C76F526ACFA4A00C49681 /* LaunchScreen.storyboard */,
-				050C76F826ACFA4A00C49681 /* Info.plist */,
 			);
 			path = TechTest;
 			sourceTree = "<group>";
@@ -126,6 +123,7 @@
 			children = (
 				050C770A26AD01DD00C49681 /* ProductResponse.swift */,
 				050C773426AFEB3300C49681 /* ProductDetailResponse.swift */,
+				05B5CC1826B3BB5100F17CCA /* CollectionViewDataModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -179,6 +177,19 @@
 				050C774426B11C9C00C49681 /* Common.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		0572551426B6D4AF00EABB00 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				050C76EA26ACFA4800C49681 /* AppDelegate.swift */,
+				050C76EC26ACFA4800C49681 /* SceneDelegate.swift */,
+				050C76F026ACFA4800C49681 /* Main.storyboard */,
+				050C76F326ACFA4A00C49681 /* Assets.xcassets */,
+				050C76F526ACFA4A00C49681 /* LaunchScreen.storyboard */,
+				050C76F826ACFA4A00C49681 /* Info.plist */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -252,6 +263,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				050C770B26AD01DD00C49681 /* ProductResponse.swift in Sources */,
+				05B5CC1926B3BB5100F17CCA /* CollectionViewDataModel.swift in Sources */,
 				050C771426AD402500C49681 /* WebService.swift in Sources */,
 				050C772226AE39DD00C49681 /* ProductDetailLoaderURL.swift in Sources */,
 				050C774526B11C9C00C49681 /* Common.swift in Sources */,
@@ -417,6 +429,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7TCT482N32;
 				INFOPLIST_FILE = TechTest/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -436,6 +449,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7TCT482N32;
 				INFOPLIST_FILE = TechTest/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
