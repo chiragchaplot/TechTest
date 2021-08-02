@@ -11,8 +11,11 @@ struct Resource<T> {
     let urlRequest: URLRequest
     let parse: (Data) -> T?
 }
+protocol WebServiceLoader {
+    func load<T>(resource: Resource<T>, completion: @escaping (T?) -> ())
+}
 
-final class Webservice {
+final class Webservice : WebServiceLoader {
     func load<T>(resource: Resource<T>, completion: @escaping (T?) -> ()) {
         URLSession.shared.dataTask(with: resource.urlRequest) { data, response, error in
             
