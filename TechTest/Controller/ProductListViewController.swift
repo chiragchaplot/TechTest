@@ -78,7 +78,8 @@ class ProductListViewController: UIViewController {
             //Accessibility for Cell
             cell.isAccessibilityElement = true
             cell.accessibilityHint = "Double Tap To View Product Details"
-            cell.accessibilityLabel = item.name
+            cell.accessibilityLabel = "Product Type"
+            cell.accessibilityValue = item.name
             cell.accessibilityTraits = .selected
         }
         
