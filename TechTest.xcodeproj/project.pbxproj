@@ -31,6 +31,11 @@
 		F65349FF26B8E1A9007602B5 /* ResponseHandler+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65349FE26B8E1A9007602B5 /* ResponseHandler+Extension.swift */; };
 		F6534A0126B8E206007602B5 /* APIHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6534A0026B8E206007602B5 /* APIHandler.swift */; };
 		F6534A0326B8EA2A007602B5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6534A0226B8EA2A007602B5 /* Constants.swift */; };
+		F6534A0A26BA02BB007602B5 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6534A0926BA02BB007602B5 /* ProgressView.swift */; };
+		F6534A0C26BA02DD007602B5 /* ProgressShapeLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6534A0B26BA02DD007602B5 /* ProgressShapeLayer.swift */; };
+		F6534A0E26BA02F8007602B5 /* StrokeAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6534A0D26BA02F8007602B5 /* StrokeAnimation.swift */; };
+		F6534A1026BA030E007602B5 /* RotationAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6534A0F26BA030E007602B5 /* RotationAnimation.swift */; };
+		F6534A1226BA032E007602B5 /* StokeColorAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6534A1126BA032E007602B5 /* StokeColorAnimation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +77,11 @@
 		F65349FE26B8E1A9007602B5 /* ResponseHandler+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ResponseHandler+Extension.swift"; sourceTree = "<group>"; };
 		F6534A0026B8E206007602B5 /* APIHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHandler.swift; sourceTree = "<group>"; };
 		F6534A0226B8EA2A007602B5 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		F6534A0926BA02BB007602B5 /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
+		F6534A0B26BA02DD007602B5 /* ProgressShapeLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressShapeLayer.swift; sourceTree = "<group>"; };
+		F6534A0D26BA02F8007602B5 /* StrokeAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrokeAnimation.swift; sourceTree = "<group>"; };
+		F6534A0F26BA030E007602B5 /* RotationAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RotationAnimation.swift; sourceTree = "<group>"; };
+		F6534A1126BA032E007602B5 /* StokeColorAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StokeColorAnimation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +123,7 @@
 		050C76E926ACFA4800C49681 /* TechTest */ = {
 			isa = PBXGroup;
 			children = (
+				F6534A0726BA0293007602B5 /* Common */,
 				050C770526ACFA9600C49681 /* Network */,
 				0572551426B6D4AF00EABB00 /* Resources */,
 				050C772426AE3E1600C49681 /* Custom Cell */,
@@ -212,6 +223,26 @@
 				F65349E426B773DC007602B5 /* Info.plist */,
 			);
 			path = TechTestTests;
+			sourceTree = "<group>";
+		};
+		F6534A0726BA0293007602B5 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				F6534A0826BA029A007602B5 /* ProgressView */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		F6534A0826BA029A007602B5 /* ProgressView */ = {
+			isa = PBXGroup;
+			children = (
+				F6534A0926BA02BB007602B5 /* ProgressView.swift */,
+				F6534A0B26BA02DD007602B5 /* ProgressShapeLayer.swift */,
+				F6534A0D26BA02F8007602B5 /* StrokeAnimation.swift */,
+				F6534A0F26BA030E007602B5 /* RotationAnimation.swift */,
+				F6534A1126BA032E007602B5 /* StokeColorAnimation.swift */,
+			);
+			path = ProgressView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -314,12 +345,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6534A0E26BA02F8007602B5 /* StrokeAnimation.swift in Sources */,
 				050C770B26AD01DD00C49681 /* ProductResponse.swift in Sources */,
 				05B5CC1926B3BB5100F17CCA /* CollectionViewDataModel.swift in Sources */,
+				F6534A1226BA032E007602B5 /* StokeColorAnimation.swift in Sources */,
 				050C771426AD402500C49681 /* APILoader.swift in Sources */,
+				F6534A0C26BA02DD007602B5 /* ProgressShapeLayer.swift in Sources */,
 				050C772226AE39DD00C49681 /* ProductDetailLoaderURL.swift in Sources */,
 				F65349F926B8E056007602B5 /* APIEnvironment.swift in Sources */,
 				F6534A0326B8EA2A007602B5 /* Constants.swift in Sources */,
+				F6534A1026BA030E007602B5 /* RotationAnimation.swift in Sources */,
 				050C771A26AD564B00C49681 /* ProductListViewController.swift in Sources */,
 				050C773026AFBB6900C49681 /* ProductDetailViewController.swift in Sources */,
 				050C771E26AE387E00C49681 /* ProductListLoaderURL.swift in Sources */,
@@ -335,6 +370,7 @@
 				050C76EB26ACFA4800C49681 /* AppDelegate.swift in Sources */,
 				050C76ED26ACFA4800C49681 /* SceneDelegate.swift in Sources */,
 				050C770826ACFD1C00C49681 /* URLGenerator.swift in Sources */,
+				F6534A0A26BA02BB007602B5 /* ProgressView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

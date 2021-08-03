@@ -15,12 +15,21 @@ class ProductListViewController: UIViewController {
     var dataSource: UICollectionViewDiffableDataSource<Section, ProductListCell>!
     var snapshot: NSDiffableDataSourceSnapshot<Section, ProductListCell>!
     
+    let loadingIndicator: ProgressView = {
+        let progress = ProgressView(colors: [.yellow, .gray, .green], lineWidth: 5)
+        progress.translatesAutoresizingMaskIntoConstraints = false
+        return progress
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        loadingIndicator.isAnimating = true
+        self.view.addSubview(loadingIndicator)
+        loadingConstraints()
         self.title = "Product List"
         load()
     }
+    
     
     private func load() {
             productListVM.fetchProductList(param: [:], completion: { (model,error) in
@@ -46,6 +55,7 @@ class ProductListViewController: UIViewController {
         setUpConstraints()
         cellRegistration()
         applyAccessibility()
+        loadingIndicator.isAnimating = false
     }
     
     private func setUpLayouts() {
@@ -107,6 +117,19 @@ class ProductListViewController: UIViewController {
     private func applyAccessibility() {
         collectionView.isAccessibilityElement = false
         collectionView.shouldGroupAccessibilityChildren = true
+    }
+    
+    private func loadingConstraints() {
+        NSLayoutConstraint.activate([
+            loadingIndicator.centerXAnchor
+                .constraint(equalTo: self.view.centerXAnchor),
+            loadingIndicator.centerYAnchor
+                .constraint(equalTo: self.view.centerYAnchor),
+            loadingIndicator.widthAnchor
+                .constraint(equalToConstant: 50),
+            loadingIndicator.heightAnchor
+                .constraint(equalTo: self.loadingIndicator.widthAnchor)
+        ])
     }
 }
 

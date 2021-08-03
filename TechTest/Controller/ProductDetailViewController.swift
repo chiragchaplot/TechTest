@@ -12,9 +12,14 @@ class ProductDetailViewController: UIViewController {
     
     var productID: String = ""
     var productDetailVM: ProductDetailViewModel?
-
     var collectionView: UICollectionView!
     var dataSource: UICollectionViewDiffableDataSource<HeaderItem, ListItem>!
+    
+    let loadingIndicator: ProgressView = {
+        let progress = ProgressView(colors: [.yellow, .gray, .green], lineWidth: 5)
+        progress.translatesAutoresizingMaskIntoConstraints = false
+        return progress
+    }()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -22,6 +27,9 @@ class ProductDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadingIndicator.isAnimating = true
+        self.view.addSubview(loadingIndicator)
+        loadingConstraints()
         self.navigationController?.navigationBar.prefersLargeTitles = true
         load()        
         print("Chirag - ProductDetailViewController")
@@ -70,6 +78,7 @@ class ProductDetailViewController: UIViewController {
         setUpLayout()
         cellReg()
         setUpSnapShots()
+        loadingIndicator.isAnimating = false
     }
     
     private func setUpLayout() {
@@ -180,5 +189,18 @@ class ProductDetailViewController: UIViewController {
         }
         
         return list
+    }
+    
+    private func loadingConstraints() {
+        NSLayoutConstraint.activate([
+            loadingIndicator.centerXAnchor
+                .constraint(equalTo: self.view.centerXAnchor),
+            loadingIndicator.centerYAnchor
+                .constraint(equalTo: self.view.centerYAnchor),
+            loadingIndicator.widthAnchor
+                .constraint(equalToConstant: 50),
+            loadingIndicator.heightAnchor
+                .constraint(equalTo: self.loadingIndicator.widthAnchor)
+        ])
     }
 }
