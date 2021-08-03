@@ -28,7 +28,7 @@ class ProductListViewModel {
         }
     }
     
-    func getProductList(param: [String: Any], completion: @escaping (ProductResponse?, ServiceError?) -> ()) {
+    func fetchProductList(param: [String: Any], completion: @escaping (ProductResponse?, ServiceError?) -> ()) {
         let request = ProductListAPI()
         
         let apiLoader = APILoader(apiHandler: request)
@@ -39,5 +39,15 @@ class ProductListViewModel {
                 completion(model, nil)
             }
         }
+    }
+    
+    func getProductList() -> [ProductListCell] {
+        var symbolItem: ProductListCell
+        var list = [ProductListCell]()
+        for product in productViewModels {
+            symbolItem = ProductListCell(name: product.name, productID: product.productID)
+            list.append(symbolItem)
+        }
+        return list
     }
 }

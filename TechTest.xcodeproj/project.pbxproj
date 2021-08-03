@@ -18,7 +18,7 @@
 		050C771126AD0C5300C49681 /* ProductListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050C771026AD0C5300C49681 /* ProductListViewModel.swift */; };
 		050C771426AD402500C49681 /* APILoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050C771326AD402500C49681 /* APILoader.swift */; };
 		050C771726AD54A500C49681 /* URLRequestGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050C771626AD54A500C49681 /* URLRequestGenerator.swift */; };
-		050C771A26AD564B00C49681 /* ProductListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050C771926AD564B00C49681 /* ProductListTableViewController.swift */; };
+		050C771A26AD564B00C49681 /* ProductListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050C771926AD564B00C49681 /* ProductListViewController.swift */; };
 		050C771E26AE387E00C49681 /* ProductListLoaderURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050C771D26AE387E00C49681 /* ProductListLoaderURL.swift */; };
 		050C772226AE39DD00C49681 /* ProductDetailLoaderURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050C772126AE39DD00C49681 /* ProductDetailLoaderURL.swift */; };
 		050C772626AE3E3500C49681 /* ProductTableListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050C772526AE3E3500C49681 /* ProductTableListCell.swift */; };
@@ -59,7 +59,7 @@
 		050C771026AD0C5300C49681 /* ProductListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListViewModel.swift; sourceTree = "<group>"; };
 		050C771326AD402500C49681 /* APILoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APILoader.swift; sourceTree = "<group>"; };
 		050C771626AD54A500C49681 /* URLRequestGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequestGenerator.swift; sourceTree = "<group>"; };
-		050C771926AD564B00C49681 /* ProductListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListTableViewController.swift; sourceTree = "<group>"; };
+		050C771926AD564B00C49681 /* ProductListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListViewController.swift; sourceTree = "<group>"; };
 		050C771D26AE387E00C49681 /* ProductListLoaderURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListLoaderURL.swift; sourceTree = "<group>"; };
 		050C772126AE39DD00C49681 /* ProductDetailLoaderURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailLoaderURL.swift; sourceTree = "<group>"; };
 		050C772526AE3E3500C49681 /* ProductTableListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableListCell.swift; sourceTree = "<group>"; };
@@ -133,7 +133,7 @@
 		050C76FF26ACFA5900C49681 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				050C771926AD564B00C49681 /* ProductListTableViewController.swift */,
+				050C771926AD564B00C49681 /* ProductListViewController.swift */,
 				050C772F26AFBB6900C49681 /* ProductDetailViewController.swift */,
 			);
 			path = Controller;
@@ -335,7 +335,7 @@
 				F65349F926B8E056007602B5 /* APIEnvironment.swift in Sources */,
 				050C774526B11C9C00C49681 /* Common.swift in Sources */,
 				F6534A0326B8EA2A007602B5 /* Constants.swift in Sources */,
-				050C771A26AD564B00C49681 /* ProductListTableViewController.swift in Sources */,
+				050C771A26AD564B00C49681 /* ProductListViewController.swift in Sources */,
 				050C773026AFBB6900C49681 /* ProductDetailViewController.swift in Sources */,
 				050C771E26AE387E00C49681 /* ProductListLoaderURL.swift in Sources */,
 				050C772626AE3E3500C49681 /* ProductTableListCell.swift in Sources */,
