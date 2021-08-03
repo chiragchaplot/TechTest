@@ -8,15 +8,9 @@
 import Foundation
 import UIKit
 
-protocol ProductDetailDelegate {
-    func showProductDetails(productID: String)
-}
-
 class ProductListTableViewController: UITableViewController {
     
     var productListVM:ProductListViewModel
-    
-    var delegate: ProductDetailDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +21,6 @@ class ProductListTableViewController: UITableViewController {
     
     func load()
     {
-        
         productListVM.getProductList(param: [:], completion: { (model,error) in
             if let _ = error {
                 DispatchQueue.main.async {
@@ -75,6 +68,7 @@ extension ProductListTableViewController {
         if let destination = segue.destination as? ProductDetailViewController{
             guard let index = tableView.indexPathForSelectedRow?.row else { return }
             destination.productID = productListVM.modelAt(index).productID
+            destination.productDetailVM = ProductDetailViewModel(productID: productListVM.modelAt(index).productID)
         }
     }
 }

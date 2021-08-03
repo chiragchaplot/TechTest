@@ -7,71 +7,25 @@
 
 import Foundation
 
-class ProductDetailLoaderURL {
-    private var urlRequest: URLRequest
-    private var prodDetailVM: ProductDetailViewModel?
+struct ProductDetailAPI: APIHandler {
     
-
-    internal func setHttpMethod() {
-        urlRequest.httpMethod = httpMethod.get.rawValue
-    }
-
-    internal func setHeaders() {
-        urlRequest.addValue("3", forHTTPHeaderField: "x-v")
-        urlRequest.addValue("application/json", forHTTPHeaderField: "Accept")
-    }
-
-    func getURLRequest() -> URLRequest{
-                setHttpMethod()
-                setHeaders()
-        return urlRequest
+    var productID: String
+    
+    func makeRequest(from param: [String: Any]) -> URLRequest? {
+        let urlString =  APIPath().productDetail(productID: productID)
+        if var url = URL(string: urlString) {
+            if param.count > 0 {
+                url = setQueryParams(parameters: param, url: url)
+            }
+            var urlRequest = URLRequest(url: url)
+            setDefaultHeaders(request: &urlRequest)
+            urlRequest.httpMethod = HTTPMethod.get.rawValue
+            return urlRequest
+        }
+        return nil
     }
     
-//    func getProductResource() -> Resource<ProductDetailResponse> {
-//         return Resource<ProductDetailResponse>(urlRequest: getURLRequest()) { data in
-//            do {
-//                let productDetailResponse = try JSONDecoder().decode(ProductDetailResponse.self, from: data)
-//                return productDetailResponse
-//            } catch let DecodingError.dataCorrupted(context) {
-//                print("# Data corrupted: ", context.debugDescription)
-//                print(context)
-//                return nil
-//            } catch let DecodingError.keyNotFound(key, context) {
-//                print("# Key '\(key)' not found:", context.debugDescription)
-//                print("# CodingPath:", context.codingPath)
-//                return nil
-//            } catch let DecodingError.valueNotFound(value, context) {
-//                print("# Value '\(value)' not found:", context.debugDescription)
-//                print("# CodingPath:", context.codingPath)
-//                return nil
-//            } catch let DecodingError.typeMismatch(type, context)  {
-//                print("# Type '\(type)' mismatch:", context.debugDescription)
-//                print("# CodingPath:", context.codingPath)
-//                return nil
-//            } catch {
-//                return nil
-//            }
-//        }
-//    }
-    
-//    func fetchProductDetailsTEMP() -> ProductDetailViewModel {
-//        let productResource = getProductResource()
-//
-//        webService = Webservice()
-//        webService?.load(resource: productResource) { [weak self] (result) in
-//            if let productDetailResource = result {
-//                self?.prodDetailVM = ProductDetailViewModel(productDetailResource)
-//                return prodDetailVM
-//            }
-//            else {
-//
-//            }
-//        }
-//    }
-    
-    init(productID: String) {
-        let urlGenerator = URLGenerator()
-        let url = urlGenerator.productDetail(productID: productID)
-        urlRequest = URLRequest(url: url)
+    func parseResponse(data: Data, response: HTTPURLResponse) throws -> ProductDetailResponse {
+        return try defaultParseResponse(data: data,response: response)
     }
 }

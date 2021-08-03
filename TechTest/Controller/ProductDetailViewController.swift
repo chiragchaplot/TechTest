@@ -11,7 +11,7 @@ import UIKit
 class ProductDetailViewController: UIViewController {
     
     var productID: String = ""
-    private var productDetailVM: ProductDetailViewModel?
+    var productDetailVM: ProductDetailViewModel?
 
     var collectionView: UICollectionView!
     var dataSource: UICollectionViewDiffableDataSource<HeaderItem, ListItem>!
@@ -44,22 +44,27 @@ class ProductDetailViewController: UIViewController {
     
     func load()
     {
-//        print("Chirag ProductID", productID)
-//        let productDetailLoader = ProductDetailLoaderURL(productID: productID)
-//        let productDetailResource = productDetailLoader.getProductResource()
-//        
-//        Webservice().load(resource: productDetailResource) { [weak self] (result) in
-//            if let productDetailResource = result {
-//                self?.productDetailVM = ProductDetailViewModel(productDetailResource)
-//                self?.display()
-//            }
-//        }
+        productDetailVM?.getProductDetails(productID: self.productID, param: [:], completion: { (model,error) in
+           if let _ = error {
+               DispatchQueue.main.async {
+                   let alert = UIAlertController(title: "Error", message: error?.message, preferredStyle: UIAlertController.Style.alert)
+                   self.present(alert, animated: true, completion: nil)
+               }
+           } else {
+               if let productDetailResponse = model {
+                self.productDetailVM?.setUp(product: productDetailResponse)
+                DispatchQueue.main.async {
+                   self.display()
+                }
+               }
+           }
+       })
     }
     
     func display()
     {
         self.navigationController?.navigationBar.prefersLargeTitles = true
-        self.title = productDetailVM?.getName()
+//        self.title = productDetailVM?.getName()
         collectionViewLayoutSetUp()
         view.addSubview(collectionView)
         setUpLayout()
@@ -162,19 +167,19 @@ class ProductDetailViewController: UIViewController {
         if let description = productDetailVM?.getDescription() {
             list.append(description)
         }
-        
+
         if let featuresList = productDetailVM?.getFeatures()  {
             list.append(featuresList)
         }
-        
+
         if let brand = productDetailVM?.getBrand() {
             list.append(brand)
         }
-        
+
         if let brandName = productDetailVM?.getBrandName() {
             list.append(brandName)
         }
-        
+
         if let eligibility = productDetailVM?.getEligibility() {
             list.append(eligibility)
         }

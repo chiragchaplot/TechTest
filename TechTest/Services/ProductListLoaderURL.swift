@@ -25,36 +25,6 @@ class ProductListLoaderURL: UrlRequestGeneratorProperties {
         return urlRequest
     }
     
-//    func getProductList() -> Resource<ProductResponse> {
-//        return Resource<ProductResponse>(urlRequest: getURLRequest()) { data in
-//           do {
-//               let productResponse = try JSONDecoder().decode(ProductResponse.self, from: data)
-//               return productResponse
-//           } catch let DecodingError.dataCorrupted(context) {
-//               print("# Data corrupted: ", context.debugDescription)
-//               print(context)
-//               return nil
-//           } catch let DecodingError.keyNotFound(key, context) {
-//               print("# Key '\(key)' not found:", context.debugDescription)
-//               print("# CodingPath:", context.codingPath)
-//               return nil
-//           } catch let DecodingError.valueNotFound(value, context) {
-//               print("# Value '\(value)' not found:", context.debugDescription)
-//               print("# CodingPath:", context.codingPath)
-//               return nil
-//           } catch let DecodingError.typeMismatch(type, context)  {
-//               print("# Type '\(type)' mismatch:", context.debugDescription)
-//               print("# CodingPath:", context.codingPath)
-//               return nil
-//           } catch {
-//               return nil
-//           }
-//       }
-//    }
-    
-    
-    
-
     init() {
         let urlGenerator = URLGenerator()
         let url = urlGenerator.productList()

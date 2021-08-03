@@ -16,7 +16,12 @@ let environment = APIEnvironment.development
 let baseURL = environment.baseURL()
 
 struct APIPath {
+    
     var productList: String { return "\(baseURL)?page_count=1000"}
-    var productDetails: String { return "\(baseURL)/"}
-
+    
+    func productDetail(productID: String) -> String {
+        return baseURL + "/" + productID
+    }
 }
+
+

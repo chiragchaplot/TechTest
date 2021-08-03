@@ -8,45 +8,60 @@
 import Foundation
 
 class ProductDetailViewModel {
-    private var name, brand, brandName: String
-    private var description: String
-    private var features: [Feature]
-    private var lastUpdated: String
+    private var name, brand, brandName: String?
+    private var description: String?
+    private var features: [Feature]?
+    private var lastUpdated: String?
     private var eligibility: [Eligibility]?
+    private var productID: String?
     
     
-    init(_ product:ProductDetailResponse){
+    func setUp(product:ProductDetailResponse){
         name = product.data.name
         description = product.data.dataDescription
-        features = product.data.features 
+        features = product.data.features
         lastUpdated = product.data.lastUpdated
         brand = product.data.brand
         brandName = product.data.brandName
+        productID = product.data.productID
         if let eligList = product.data.eligibility {
             eligibility = eligList
         }
     }
     
+    init(productID: String) {
+        self.productID = productID
+    }
+    
     func getName() -> String {
-        return name
+        if let name = self.name {
+            return name
+        }
+        else {
+            return "Product Detail"
+        }
     }
     
     func getDescription() -> HeaderItem {
-        let symbolItem  = SFSymbolItem(name: description)
         var sublist = [SFSymbolItem]()
+        if let description = description {
+        let symbolItem  = SFSymbolItem(name: description)
         sublist.append(symbolItem)
+        }
         return HeaderItem(title: "Product Category", symbols: sublist)
     }
     
     func getFeatures() -> HeaderItem {
-        var symbolItem: SFSymbolItem
-        var sublist = [SFSymbolItem]()
         
-        for feature in features {
-            
-            if let additionalInfo = feature.additionalInfo {
-                symbolItem = SFSymbolItem(name: additionalInfo)
-                sublist.append(symbolItem)
+        var sublist = [SFSymbolItem]()
+        if let features = features {
+            var symbolItem: SFSymbolItem
+            for feature in features {
+                
+                if let additionalInfo = feature.additionalInfo {
+                    symbolItem = SFSymbolItem(name: additionalInfo)
+                    sublist.append(symbolItem)
+                }
             }
         }
         return HeaderItem(title: "Features", symbols: sublist)
@@ -54,24 +69,21 @@ class ProductDetailViewModel {
     
     
     func getBrand() -> HeaderItem {
-        let symbolItem  = SFSymbolItem(name: brand)
         var sublist = [SFSymbolItem]()
-        sublist.append(symbolItem)
+        if let brand = brand {
+            let symbolItem  = SFSymbolItem(name: brand)
+            sublist.append(symbolItem)
+        }
         return HeaderItem(title: "Brand", symbols: sublist)
     }
     
     func getBrandName() -> HeaderItem {
-        let symbolItem  = SFSymbolItem(name: brandName)
         var sublist = [SFSymbolItem]()
-        sublist.append(symbolItem)
+        if let brandName = brandName {
+            let symbolItem  = SFSymbolItem(name: brandName)
+            sublist.append(symbolItem)
+        }
         return HeaderItem(title: "Brand Name", symbols: sublist)
-    }
-    
-    func getLastUpdated() -> HeaderItem {
-        let symbolItem  = SFSymbolItem(name: brand)
-        var sublist = [SFSymbolItem]()
-        sublist.append(symbolItem)
-        return HeaderItem(title: "Last Updated", symbols: sublist)
     }
     
     func getEligibility() -> HeaderItem {
@@ -90,6 +102,20 @@ class ProductDetailViewModel {
         return HeaderItem(title: "Eligbility", symbols: sublist)
     }
     
+    
+    
+    func getProductDetails (productID: String, param: [String: Any], completion: @escaping (ProductDetailResponse?, ServiceError?) -> ()) {
+        let request = ProductDetailAPI(productID: productID)
+        
+        let apiLoader = APILoader(apiHandler: request)
+        apiLoader.loadAPIRequest(requestData: param) { (model, error) in
+            if let _ = error {
+                completion(nil, error)
+            } else {
+                completion(model, nil)
+            }
+        }
+    }
     
     
 }
