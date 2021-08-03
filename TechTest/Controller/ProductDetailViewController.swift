@@ -44,16 +44,16 @@ class ProductDetailViewController: UIViewController {
     
     func load()
     {
-        print("Chirag ProductID", productID)
-        let productDetailLoader = ProductDetailLoaderURL(productID: productID)
-        let productDetailResource = productDetailLoader.fetchProductDetails()
-        
-        Webservice().load(resource: productDetailResource) { [weak self] (result) in
-            if let productDetailResource = result {
-                self?.productDetailVM = ProductDetailViewModel(productDetailResource)
-                self?.display()
-            }
-        }
+//        print("Chirag ProductID", productID)
+//        let productDetailLoader = ProductDetailLoaderURL(productID: productID)
+//        let productDetailResource = productDetailLoader.getProductResource()
+//        
+//        Webservice().load(resource: productDetailResource) { [weak self] (result) in
+//            if let productDetailResource = result {
+//                self?.productDetailVM = ProductDetailViewModel(productDetailResource)
+//                self?.display()
+//            }
+//        }
     }
     
     func display()

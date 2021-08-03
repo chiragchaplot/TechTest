@@ -27,4 +27,17 @@ class ProductListViewModel {
             }
         }
     }
+    
+    func getProductList(param: [String: Any], completion: @escaping (ProductResponse?, ServiceError?) -> ()) {
+        let request = ProductListAPI()
+        
+        let apiLoader = APILoader(apiHandler: request)
+        apiLoader.loadAPIRequest(requestData: param) { (model, error) in
+            if let _ = error {
+                completion(nil, error)
+            } else {
+                completion(model, nil)
+            }
+        }
+    }
 }
