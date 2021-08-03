@@ -40,6 +40,13 @@ class ProductListViewController: UIViewController {
             })
     }
     
+    func display()
+    {
+        setUpLayouts()
+        setUpConstraints()
+        cellRegistration()
+        applyAccessibility()
+    }
     
     func setUpLayouts() {
         let layoutConfig = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
@@ -66,8 +73,13 @@ class ProductListViewController: UIViewController {
             
             var content = cell.defaultContentConfiguration()
             content.text = item.name
-            
             cell.contentConfiguration = content
+            
+            //Accessibility for Cell
+            cell.isAccessibilityElement = true
+            cell.accessibilityHint = "Double Tap To View Product Details"
+            cell.accessibilityLabel = item.name
+            cell.accessibilityTraits = .selected
         }
         
         
@@ -89,11 +101,11 @@ class ProductListViewController: UIViewController {
         dataSource.apply(snapshot, animatingDifferences: false)
     }
     
-    func display()
-    {
-        setUpLayouts()
-        setUpConstraints()
-        cellRegistration()
+    
+    
+    func applyAccessibility() {
+        collectionView.isAccessibilityElement = false
+        collectionView.shouldGroupAccessibilityChildren = true
     }
 }
 
