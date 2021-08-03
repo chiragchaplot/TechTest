@@ -22,7 +22,7 @@ class ProductListViewController: UIViewController {
         load()
     }
     
-    func load() {
+    private func load() {
             productListVM.fetchProductList(param: [:], completion: { (model,error) in
                 if let _ = error {
                     DispatchQueue.main.async {
@@ -40,7 +40,7 @@ class ProductListViewController: UIViewController {
             })
     }
     
-    func display()
+    private func display()
     {
         setUpLayouts()
         setUpConstraints()
@@ -48,7 +48,7 @@ class ProductListViewController: UIViewController {
         applyAccessibility()
     }
     
-    func setUpLayouts() {
+    private func setUpLayouts() {
         let layoutConfig = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
         let listLayout = UICollectionViewCompositionalLayout.list(using: layoutConfig)
         
@@ -57,7 +57,7 @@ class ProductListViewController: UIViewController {
         view.addSubview(collectionView)
     }
     
-    func setUpConstraints() {
+    private func setUpConstraints() {
         // Make collection view take up the entire view
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -68,7 +68,7 @@ class ProductListViewController: UIViewController {
         ])
     }
     
-    func cellRegistration() {
+    private func cellRegistration() {
         let cellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, ProductListCell> { (cell, indexPath, item) in
             
             var content = cell.defaultContentConfiguration()
@@ -104,7 +104,7 @@ class ProductListViewController: UIViewController {
     
     
     
-    func applyAccessibility() {
+    private func applyAccessibility() {
         collectionView.isAccessibilityElement = false
         collectionView.shouldGroupAccessibilityChildren = true
     }

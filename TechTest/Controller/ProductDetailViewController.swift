@@ -32,7 +32,7 @@ class ProductDetailViewController: UIViewController {
     }
     
     // MARK: Create list layout
-    func  collectionViewLayoutSetUp() {
+    private func  collectionViewLayoutSetUp() {
         var layoutConfig = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
         layoutConfig.headerMode = .firstItemInSection
         let listLayout = UICollectionViewCompositionalLayout.list(using: layoutConfig)
@@ -42,7 +42,7 @@ class ProductDetailViewController: UIViewController {
     }
     
     
-    func load()
+    private func load()
     {
         productDetailVM?.getProductDetails(productID: self.productID, param: [:], completion: { (model,error) in
            if let _ = error {
@@ -61,7 +61,7 @@ class ProductDetailViewController: UIViewController {
        })
     }
     
-    func display()
+    private func display()
     {
         self.navigationController?.navigationBar.prefersLargeTitles = true
 //        self.title = productDetailVM?.getName()
@@ -72,7 +72,7 @@ class ProductDetailViewController: UIViewController {
         setUpSnapShots()
     }
     
-    func setUpLayout() {
+    private func setUpLayout() {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50),
