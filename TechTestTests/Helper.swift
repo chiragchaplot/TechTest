@@ -10,7 +10,7 @@ import Foundation
 
 struct Helper {
     let HelperList = ["Credit Card", "Home Loan", "Car Loan"]
-    
+    let productID = "ad22b1f0967349e8a5d586afe7f0d845"
     
     func returnProductViewModel_Many() -> [ProductViewModel] {
         var result = [ProductViewModel]()
@@ -45,5 +45,11 @@ struct Helper {
         let data = ProductDetailDataClass(features: features, eligibility: nil, productID: "mockContent", lastUpdated: "", productCategory: "LOAN", name: "Home Loan", dataDescription: "Home loan for us", brand: "CBA", brandName: "CommBank Loans", isTailored: false, fees: nil)
         
         return ProductDetailResponse(data: data)
+    }
+    
+    func dummyProductDetail() -> ProductDetailViewModel {
+        var prodDetailVM = ProductDetailViewModel(productID: "")
+        prodDetailVM.setUp(product: dummyProductDetailResponse())
+        return prodDetailVM
     }
 }

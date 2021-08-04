@@ -41,6 +41,8 @@
 		F6534A1826BA155C007602B5 /* ProductListAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6534A1726BA155C007602B5 /* ProductListAPITests.swift */; };
 		F6534A1A26BA156C007602B5 /* ProductDetailAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6534A1926BA156C007602B5 /* ProductDetailAPITests.swift */; };
 		F6534A1C26BA2341007602B5 /* mockProductListAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6534A1B26BA2341007602B5 /* mockProductListAPI.swift */; };
+		F6534A2026BA605C007602B5 /* mockProductDetailAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6534A1F26BA605C007602B5 /* mockProductDetailAPI.swift */; };
+		F6534A2426BA61CB007602B5 /* ProductDetailViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6534A2326BA61CB007602B5 /* ProductDetailViewModelTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +94,8 @@
 		F6534A1726BA155C007602B5 /* ProductListAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListAPITests.swift; sourceTree = "<group>"; };
 		F6534A1926BA156C007602B5 /* ProductDetailAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailAPITests.swift; sourceTree = "<group>"; };
 		F6534A1B26BA2341007602B5 /* mockProductListAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mockProductListAPI.swift; sourceTree = "<group>"; };
+		F6534A1F26BA605C007602B5 /* mockProductDetailAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mockProductDetailAPI.swift; sourceTree = "<group>"; };
+		F6534A2326BA61CB007602B5 /* ProductDetailViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailViewModelTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -231,11 +235,9 @@
 			isa = PBXGroup;
 			children = (
 				F65349E426B773DC007602B5 /* Info.plist */,
-				F6534A1326BA086A007602B5 /* ProductListViewModelTest.swift */,
+				F6534A1D26BA5FFF007602B5 /* View Model */,
 				F6534A1526BA0963007602B5 /* Helper.swift */,
-				F6534A1726BA155C007602B5 /* ProductListAPITests.swift */,
-				F6534A1926BA156C007602B5 /* ProductDetailAPITests.swift */,
-				F6534A1B26BA2341007602B5 /* mockProductListAPI.swift */,
+				F6534A1E26BA600C007602B5 /* Service Tests */,
 			);
 			path = TechTestTests;
 			sourceTree = "<group>";
@@ -258,6 +260,26 @@
 				F6534A1126BA032E007602B5 /* StokeColorAnimation.swift */,
 			);
 			path = ProgressView;
+			sourceTree = "<group>";
+		};
+		F6534A1D26BA5FFF007602B5 /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+				F6534A1326BA086A007602B5 /* ProductListViewModelTest.swift */,
+				F6534A2326BA61CB007602B5 /* ProductDetailViewModelTest.swift */,
+			);
+			path = "View Model";
+			sourceTree = "<group>";
+		};
+		F6534A1E26BA600C007602B5 /* Service Tests */ = {
+			isa = PBXGroup;
+			children = (
+				F6534A1B26BA2341007602B5 /* mockProductListAPI.swift */,
+				F6534A1F26BA605C007602B5 /* mockProductDetailAPI.swift */,
+				F6534A1726BA155C007602B5 /* ProductListAPITests.swift */,
+				F6534A1926BA156C007602B5 /* ProductDetailAPITests.swift */,
+			);
+			path = "Service Tests";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -395,9 +417,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				F6534A1426BA086A007602B5 /* ProductListViewModelTest.swift in Sources */,
+				F6534A2026BA605C007602B5 /* mockProductDetailAPI.swift in Sources */,
 				F6534A1626BA0963007602B5 /* Helper.swift in Sources */,
 				F6534A1826BA155C007602B5 /* ProductListAPITests.swift in Sources */,
 				F6534A1C26BA2341007602B5 /* mockProductListAPI.swift in Sources */,
+				F6534A2426BA61CB007602B5 /* ProductDetailViewModelTest.swift in Sources */,
 				F6534A1A26BA156C007602B5 /* ProductDetailAPITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
