@@ -12,9 +12,14 @@ class ProductDetailViewController: UIViewController {
     
     var productID: String = ""
     var productDetailVM: ProductDetailViewModel?
-
     var collectionView: UICollectionView!
     var dataSource: UICollectionViewDiffableDataSource<HeaderItem, ListItem>!
+    
+    let loadingIndicator: ProgressView = {
+        let progress = ProgressView(colors: [.yellow, .gray, .green], lineWidth: 5)
+        progress.translatesAutoresizingMaskIntoConstraints = false
+        return progress
+    }()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -22,6 +27,9 @@ class ProductDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadingIndicator.isAnimating = true
+        self.view.addSubview(loadingIndicator)
+        loadingConstraints()
         self.navigationController?.navigationBar.prefersLargeTitles = true
         load()        
         print("Chirag - ProductDetailViewController")
@@ -32,7 +40,7 @@ class ProductDetailViewController: UIViewController {
     }
     
     // MARK: Create list layout
-    func  collectionViewLayoutSetUp() {
+    private func  collectionViewLayoutSetUp() {
         var layoutConfig = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
         layoutConfig.headerMode = .firstItemInSection
         let listLayout = UICollectionViewCompositionalLayout.list(using: layoutConfig)
@@ -42,7 +50,7 @@ class ProductDetailViewController: UIViewController {
     }
     
     
-    func load()
+    private func load()
     {
         productDetailVM?.getProductDetails(productID: self.productID, param: [:], completion: { (model,error) in
            if let _ = error {
@@ -61,7 +69,7 @@ class ProductDetailViewController: UIViewController {
        })
     }
     
-    func display()
+    private func display()
     {
         self.navigationController?.navigationBar.prefersLargeTitles = true
 //        self.title = productDetailVM?.getName()
@@ -70,9 +78,10 @@ class ProductDetailViewController: UIViewController {
         setUpLayout()
         cellReg()
         setUpSnapShots()
+        loadingIndicator.isAnimating = false
     }
     
-    func setUpLayout() {
+    private func setUpLayout() {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50),
@@ -87,13 +96,13 @@ class ProductDetailViewController: UIViewController {
         let headerCellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, HeaderItem> {
             (cell, indexPath, headerItem) in
             
-            // Set headerItem's data to cell
             var content = cell.defaultContentConfiguration()
             content.text = headerItem.title
             cell.contentConfiguration = content
             
-            // Add outline disclosure accessory
-            // With this accessory, the header cell's children will expand / collapse when the header cell is tapped.
+            //Accessibility
+            cell.isAccessibilityElement = false
+            
             let headerDisclosureOption = UICellAccessory.OutlineDisclosureOptions(style: .header)
             cell.accessories = [.outlineDisclosure(options:headerDisclosureOption)]
         }
@@ -101,10 +110,14 @@ class ProductDetailViewController: UIViewController {
         let symbolCellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, SFSymbolItem> {
             (cell, indexPath, symbolItem) in
             
-            // Set symbolItem's data to cell
             var content = cell.defaultContentConfiguration()
             content.text = symbolItem.name
             cell.contentConfiguration = content
+            
+            //Accessibility
+            cell.isAccessibilityElement = true
+            cell.accessibilityLabel = symbolItem.name
+            cell.accessibilityValue = symbolItem.name
         }
         
         dataSource = UICollectionViewDiffableDataSource<HeaderItem, ListItem>(collectionView: collectionView) {
@@ -113,7 +126,6 @@ class ProductDetailViewController: UIViewController {
             switch listItem {
             case .header(let headerItem):
             
-                // Dequeue header cell
                 let cell = collectionView.dequeueConfiguredReusableCell(using: headerCellRegistration,
                                                                         for: indexPath,
                                                                         item: headerItem)
@@ -121,7 +133,6 @@ class ProductDetailViewController: UIViewController {
             
             case .symbol(let symbolItem):
                 
-                // Dequeue symbol cell
                 let cell = collectionView.dequeueConfiguredReusableCell(using: symbolCellRegistration,
                                                                         for: indexPath,
                                                                         item: symbolItem)
@@ -133,29 +144,22 @@ class ProductDetailViewController: UIViewController {
     private func setUpSnapShots(){
         var dataSourceSnapshot = NSDiffableDataSourceSnapshot<HeaderItem, ListItem>()
 
-        // Create collection view section based on number of HeaderItem in modelObjects
         let modelObjects = prepareListObject()
         dataSourceSnapshot.appendSections(modelObjects)
         dataSource.apply(dataSourceSnapshot)
         
-        // Loop through each header item so that we can create a section snapshot for each respective header item.
         for headerItem in modelObjects {
             
-            // Create a section snapshot
             var sectionSnapshot = NSDiffableDataSourceSectionSnapshot<ListItem>()
             
-            // Create a header ListItem & append as parent
             let headerListItem = ListItem.header(headerItem)
             sectionSnapshot.append([headerListItem])
             
-            // Create an array of symbol ListItem & append as child of headerListItem
             let symbolListItemArray = headerItem.symbols.map { ListItem.symbol($0) }
             sectionSnapshot.append(symbolListItemArray, to: headerListItem)
             
-            // Expand this section by default
             sectionSnapshot.expand([headerListItem])
             
-            // Apply section snapshot to the respective collection view section
             dataSource.apply(sectionSnapshot, to: headerItem, animatingDifferences: false)
         }
 
@@ -185,5 +189,18 @@ class ProductDetailViewController: UIViewController {
         }
         
         return list
+    }
+    
+    private func loadingConstraints() {
+        NSLayoutConstraint.activate([
+            loadingIndicator.centerXAnchor
+                .constraint(equalTo: self.view.centerXAnchor),
+            loadingIndicator.centerYAnchor
+                .constraint(equalTo: self.view.centerYAnchor),
+            loadingIndicator.widthAnchor
+                .constraint(equalToConstant: 50),
+            loadingIndicator.heightAnchor
+                .constraint(equalTo: self.loadingIndicator.widthAnchor)
+        ])
     }
 }
