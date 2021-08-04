@@ -10,23 +10,26 @@ import Foundation
 class ProductListViewModel {
     
     var productViewModels = [ProductViewModel]()
-    let request = ProductListAPI()
+    var request = ProductListAPI()
+    var apiLoader : APILoader<ProductListAPI>
     
     func modelAt(_ index: Int) -> ProductViewModel {
         return productViewModels[index]
+        
     }
     
-    init(productList: ProductResponse?) {
+    init(productList: ProductResponse?, request: ProductListAPI =  ProductListAPI()){
         if let productList = productList {
             for product in productList.data.products {
                 let productVM = ProductViewModel(product: product)
                 productViewModels.append(productVM)
             }
         }
+        self.request = request
+        apiLoader = APILoader<ProductListAPI>(apiHandler: request)
     }
     
     func fetchProductList(param: [String: Any], completion: @escaping (ProductResponse?, ServiceError?) -> ()) {
-        let apiLoader = APILoader(apiHandler: request)
         apiLoader.loadAPIRequest(requestData: param) { (model, error) in
             if let _ = error {
                 completion(nil, error)

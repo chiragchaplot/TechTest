@@ -40,6 +40,7 @@
 		F6534A1626BA0963007602B5 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6534A1526BA0963007602B5 /* Helper.swift */; };
 		F6534A1826BA155C007602B5 /* ProductListAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6534A1726BA155C007602B5 /* ProductListAPITests.swift */; };
 		F6534A1A26BA156C007602B5 /* ProductDetailAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6534A1926BA156C007602B5 /* ProductDetailAPITests.swift */; };
+		F6534A1C26BA2341007602B5 /* mockProductListAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6534A1B26BA2341007602B5 /* mockProductListAPI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +91,7 @@
 		F6534A1526BA0963007602B5 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		F6534A1726BA155C007602B5 /* ProductListAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListAPITests.swift; sourceTree = "<group>"; };
 		F6534A1926BA156C007602B5 /* ProductDetailAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailAPITests.swift; sourceTree = "<group>"; };
+		F6534A1B26BA2341007602B5 /* mockProductListAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mockProductListAPI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -233,6 +235,7 @@
 				F6534A1526BA0963007602B5 /* Helper.swift */,
 				F6534A1726BA155C007602B5 /* ProductListAPITests.swift */,
 				F6534A1926BA156C007602B5 /* ProductDetailAPITests.swift */,
+				F6534A1B26BA2341007602B5 /* mockProductListAPI.swift */,
 			);
 			path = TechTestTests;
 			sourceTree = "<group>";
@@ -394,6 +397,7 @@
 				F6534A1426BA086A007602B5 /* ProductListViewModelTest.swift in Sources */,
 				F6534A1626BA0963007602B5 /* Helper.swift in Sources */,
 				F6534A1826BA155C007602B5 /* ProductListAPITests.swift in Sources */,
+				F6534A1C26BA2341007602B5 /* mockProductListAPI.swift in Sources */,
 				F6534A1A26BA156C007602B5 /* ProductDetailAPITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
