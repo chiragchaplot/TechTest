@@ -27,12 +27,9 @@ class ProductDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadingIndicator.isAnimating = true
-        self.view.addSubview(loadingIndicator)
-        loadingConstraints()
+        showLoadingIndicator()
         self.navigationController?.navigationBar.prefersLargeTitles = true
-        load()        
-        print("Chirag - ProductDetailViewController")
+        load()
     }
     
     @IBAction func backButtonPressed(_ sender: Any) {
@@ -202,5 +199,11 @@ class ProductDetailViewController: UIViewController {
             loadingIndicator.heightAnchor
                 .constraint(equalTo: self.loadingIndicator.widthAnchor)
         ])
+    }
+    
+    func showLoadingIndicator() {
+        loadingIndicator.isAnimating = true
+        self.view.addSubview(loadingIndicator)
+        loadingConstraints()
     }
 }

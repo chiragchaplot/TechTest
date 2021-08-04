@@ -10,10 +10,7 @@ import Foundation
 class ProductListViewModel {
     
     var productViewModels = [ProductViewModel]()
-    
-    func numOfRows(_ section: Int) -> Int {
-        return productViewModels.count
-    }
+    let request = ProductListAPI()
     
     func modelAt(_ index: Int) -> ProductViewModel {
         return productViewModels[index]
@@ -29,8 +26,6 @@ class ProductListViewModel {
     }
     
     func fetchProductList(param: [String: Any], completion: @escaping (ProductResponse?, ServiceError?) -> ()) {
-        let request = ProductListAPI()
-        
         let apiLoader = APILoader(apiHandler: request)
         apiLoader.loadAPIRequest(requestData: param) { (model, error) in
             if let _ = error {
