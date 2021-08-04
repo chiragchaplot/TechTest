@@ -19,9 +19,9 @@ struct URLGenerator {
         return URL(string: url)!
     }
     
-    func productDetail(productID: String) -> URL {
+    func productDetail(productID: String) -> String {
         var url = baseURL()
         url = url + "/" + productID
-        return URL(string: url)!
+        return url
     }
 }

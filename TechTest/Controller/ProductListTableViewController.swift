@@ -8,15 +8,9 @@
 import Foundation
 import UIKit
 
-protocol ProductDetailDelegate {
-    func showProductDetails(productID: String)
-}
-
 class ProductListTableViewController: UITableViewController {
     
     var productListVM:ProductListViewModel
-    
-    var delegate: ProductDetailDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,15 +21,21 @@ class ProductListTableViewController: UITableViewController {
     
     func load()
     {
-        let productListLoader = ProductListLoaderURL()
-        let productResource = productListLoader.getProductList()
-        
-        Webservice().load(resource: productResource) { [weak self] (result) in
-            if let productResource = result {
-                self?.productListVM = ProductListViewModel(productList: productResource)
-                self?.tableView.reloadData()
+        productListVM.getProductList(param: [:], completion: { (model,error) in
+            if let _ = error {
+                DispatchQueue.main.async {
+                    let alert = UIAlertController(title: "Error", message: error?.message, preferredStyle: UIAlertController.Style.alert)
+                    self.present(alert, animated: true, completion: nil)
+                }
+            } else {
+                if let prodListVM = model {
+                    self.productListVM = ProductListViewModel(productList: prodListVM)
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+                }
             }
-        }
+        })
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -68,6 +68,7 @@ extension ProductListTableViewController {
         if let destination = segue.destination as? ProductDetailViewController{
             guard let index = tableView.indexPathForSelectedRow?.row else { return }
             destination.productID = productListVM.modelAt(index).productID
+            destination.productDetailVM = ProductDetailViewModel(productID: productListVM.modelAt(index).productID)
         }
     }
 }
