@@ -14,6 +14,8 @@ class ProductDetailViewModel {
     private var lastUpdated: String?
     private var eligibility: [Eligibility]?
     private var productID: String?
+    var request : ProductDetailAPI
+    var apiLoader : APILoader<ProductDetailAPI>
     
     
     func setUp(product:ProductDetailResponse){
@@ -31,6 +33,8 @@ class ProductDetailViewModel {
     
     init(productID: String) {
         self.productID = productID
+        self.request = ProductDetailAPI(productID: productID)
+        self.apiLoader = APILoader(apiHandler: request)
     }
     
     func getName() -> String {
@@ -105,9 +109,6 @@ class ProductDetailViewModel {
     
     
     func getProductDetails (productID: String, param: [String: Any], completion: @escaping (ProductDetailResponse?, ServiceError?) -> ()) {
-        let request = ProductDetailAPI(productID: productID)
-        
-        let apiLoader = APILoader(apiHandler: request)
         apiLoader.loadAPIRequest(requestData: param) { (model, error) in
             if let _ = error {
                 completion(nil, error)

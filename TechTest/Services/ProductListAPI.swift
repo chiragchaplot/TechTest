@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ProductListAPI: APIHandler {
+class ProductListAPI: APIHandler {
     func makeRequest(from param: [String: Any]) -> URLRequest? {
         let urlString =  APIPath().productList
         if var url = URL(string: urlString) {
