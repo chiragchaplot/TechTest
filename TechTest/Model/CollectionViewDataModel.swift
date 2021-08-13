@@ -22,9 +22,11 @@ struct HeaderItem: Hashable {
 }
 
 struct SFSymbolItem: Hashable {
+    let uuid: UUID
     let name: String
     init(name: String) {
         self.name = name
+        self.uuid = UUID()
     }
 }
 
